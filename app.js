@@ -6,9 +6,35 @@ var mgconfig = require('./config/index.js')
 var Products = require('./models/products.js');
 var mainController = require('./controllers/mainController.js')
 var bodyParser = require('body-parser');
+var passport = require('passport');
+const session = require('express-session');
 
 var app = express();
 
+passport.serializeUser(function(user, cb) {
+  Users.findOne({facebookId: user.facebookId}, function(err, db_user){
+    if (err) return err;
+    console.log('user serialized is: ' + user)
+    cb(null, user);
+  })
+  
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+app.use(session({
+        key: 'session',
+        secret: 'helloworld123',
+        store: require('mongoose-session')(mongoose)
+}));
+
+app.use(passport.initialize());
+
+app.use(passport.session());
+
+// connecting to mongodb (mlab cloud service)
 mongoose.connect(mgconfig.getDbConnectionstring(), function() {
     console.log('successfuly connected')
 });
