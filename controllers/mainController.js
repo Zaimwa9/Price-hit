@@ -125,8 +125,8 @@ module.exports = function(app) {
         Products.findOne({_id: req.params.productId}, function(err, db_product){
             if (err) return err;
             if (!db_product) return new Error("Woops couldn't find the product");
-            
-            res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product});
+ 
+        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product});
         })
     })
 
@@ -138,7 +138,9 @@ module.exports = function(app) {
 
     // FROM HERE ARE ALL THE POST METHODS
 
-    /* This post request handles the addition of a new product:
+    /*      "/input_new_product" 
+    
+    This post request handles the addition of a new product:
             1) multer middleware gets all the info concerning the file and puts it in "req.file"
             2) body-parser (or multer, not sure), gets the content of the other text inputs name/price and puts them in req.body.XX
             3) fs creates a "pipe", it will copy what it gets from the file and paste it in the uploads folder
