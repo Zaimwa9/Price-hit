@@ -6,7 +6,7 @@
  */
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: impact;
+  font-family: Trebuchet MS;
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -16,7 +16,7 @@ html {
 body {
   margin: 0;
   background-color:#E8E8EE;
-  font-family: Impact; 
+  font-family: Trebuchet MS; 
 }
 
 article,
@@ -84,7 +84,7 @@ strong {
 code,
 kbd,
 samp {
-  font-family: impact, monospace;
+  font-family: Trebuchet MS, monospace;
   font-size: 1em;
 }
 
@@ -340,7 +340,7 @@ html {
 }
 
 body {
-  font-family: impact;
+  font-family: Trebuchet MS;
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
