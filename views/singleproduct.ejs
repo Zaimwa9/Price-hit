@@ -83,15 +83,17 @@
             <div class="col-lg-9">
 
                 <div class="card mt-4">
-                    <img class="card-img-top img-fluid" src="<%= product.img %>" alt="">
+                    <img class="card-img-top img-fluid img-responsive mx-auto" src="<%= product.img %>" alt="" >
                     <div class="card-block">
-                        <h3 class="card-title">Product Name</h3>
-                        <form action="/action_page.php">
-                        Name Your Price: <input type="number" name="price"><br>
+                        <h3 class="card-title"><%= product.name %></h3>
+                        <form action="/add_price/<%= product._id %>" method="post">
+                        Add a price <input type="number" name="price"><br>
                         <input type="submit" value="Submit">
                         </form>
-                        <p class="card-text"><strong>Product Description:</strong><br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta.</p>
-                        <h4 class="pull-right">Average Price :</h4>
+                        <br>
+                        <h4 class="pull-right">Product Description:</h4> <%= product.description %> </p>
+                        <h4 class="pull-right">Average Price: </h4> <%= product.price_array %>
+                        <h4 class="pull-right">People who voted : </h4> <%= product.price_array.length %>
                     </div>
                 </div>
                 <!-- /.card -->

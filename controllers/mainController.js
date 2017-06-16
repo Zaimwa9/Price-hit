@@ -159,11 +159,28 @@ module.exports = function(app) {
             src.pipe(dest);
             
             // Listening on 'end' or 'error' event to reroute 
-            src.on('end', function() {res.send('complete')})
-            src.on('error', function(err){res.send('error')})
+            src.on('end', function(
+                
+            ) {res.redirect('/product/' + cb._id)})
+            src.on('error', function(){res.send('Woops there was an error, please retry later')})
             
             console.log(req.file);
         })
+    });
+
+    // add a price
+
+    app.post('/add_price/:productId', function(req, res) {
+        Products.findOne({_id: req.params.productId}, function (err, db_project){
+            if (err) return err;
+            if ((db_project) && (req.body.price))
+                db_project.price_array.push(req.body.price);
+                db_project.save(function(err, result){
+                    console.log(db_project)
+                    return res.send('done')
+                });
+                
+            });
     })
 
 
