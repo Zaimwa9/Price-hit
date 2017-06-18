@@ -39,7 +39,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <a class="navbar-brand" href="/">Price'hit !</a>
+            <a class="navbar-brand" href="/">Price-Hit !</a>
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -49,9 +49,6 @@
                         <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Landing Page</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/contactus">Contact Us</a>
                     </li>
                     <% if (!auth) { %>
@@ -59,6 +56,11 @@
                         <a class="nav-link" href="/auth/facebook">Login</a>
                     </li>
                     <% } %>     
+                    <% if (auth) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } %> 
                 </ul>
             </div>
         </div>

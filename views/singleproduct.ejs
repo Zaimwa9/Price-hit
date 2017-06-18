@@ -39,7 +39,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
-            <a class="navbar-brand" href="/">Price Hit !</a>
+            <a class="navbar-brand" href="/">Price-Hit !</a>
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
@@ -49,9 +49,6 @@
                         <a class="nav-link" href="/aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Landing Page</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/contactus">Contact Us</a>
                     </li>
                     <% if (!auth) { %>
@@ -59,6 +56,11 @@
                         <a class="nav-link" href="/auth/facebook">Login</a>
                     </li>
                     <% } %>     
+                    <% if (auth) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } %> 
                 </ul>
             </div>
         </div>
@@ -72,7 +74,6 @@
             <div class="col-lg-3">
                 <h1 class="my-4">Price me </h1>
                 <div class="list-group">
-                    <a href="#" class="list-group-item active">Price One</a>
                     <a href="/browsepage" class="list-group-item">Browse Products</a>
                     <a href="/addproduct" class="list-group-item">Add Product</a>
                 </div>
@@ -85,14 +86,18 @@
                 <div class="card mt-4">
                     <img class="card-img-top img-fluid img-responsive mx-auto" src="<%= product.img %>" alt="" >
                     <div class="card-block">
-                        <h3 class="card-title"><%= product.name %></h3>
+                        <h2 class="card-title text-center"><%= product.name %></h3>
+                        <% if (auth) {%>
                         <form action="/add_price/<%= product._id %>" method="post">
                         Add a price <input type="number" name="price"><br>
                         <input type="submit" value="Submit">
                         </form>
+                        <% } %>
                         <br>
                         <h4 class="pull-right">Product Description:</h4> <%= product.description %> </p>
+                        <br>
                         <h4 class="pull-right">Average Price: </h4> <%= product.price_array %>
+                        <br>
                         <h4 class="pull-right">People who voted : </h4> <%= product.price_array.length %>
                     </div>
                 </div>
@@ -100,19 +105,23 @@
 
                 <div class="card card-outline-secondary my-4">
                     <div class="card-header">
-                        Comments:
                     </div>
                     <div class="card-block">
+                        <% for(i=0; i< comments.length; i++) {%>
+                        <p> <%= comments[i].text %></p>
+                        <small class="text-muted">Posted by <%= comments[i].author_name%> on <%= comments[i].posted_at %></small>
+                        <hr>
+                        <% } %>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non!</p>
                         <small class="text-muted">Posted by Anonymous on 3/1/17</small>
                         <hr>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non!</p>
                         <small class="text-muted">Posted by Anonymous on 3/1/17</small>
                         <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non!</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <a href="#" class="btn btn-success">Post Your Com'!</a>
+                        <form method="post" action="/add_comment/<%= product._id %>">                      
+                            <textarea id="commentfield" input type="text" name="new_comment" style="width:648px; height:120px" required></textarea> <br>
+                            <input type="submit" value="Post your com' !">
+                        </form>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -141,3 +150,4 @@
 </body>
 
 </html>
+

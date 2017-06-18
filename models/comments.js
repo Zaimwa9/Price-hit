@@ -5,9 +5,10 @@ var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 
 CommentSchema = new Schema({
-    username: { type: String, required: true, index: { unique: true } },
+    author_id: String,
+    author_name: { type: String, required: true },
     facebookId: String,
-    content: String,
+    text: String,
     productId: String,
     posted_at: Date
 });
