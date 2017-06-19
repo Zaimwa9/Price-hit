@@ -118,7 +118,7 @@ module.exports = function(app) {
 
     app.get('/addproduct', function(req, res){
         res.render('addproduct.ejs', {auth: req.isAuthenticated()})
-    });
+    })
 
     // ROUTES REQUIRING PARAMS
     app.get('/product/:productId', function(req, res){
@@ -126,18 +126,22 @@ module.exports = function(app) {
             if (err) return err;
             if (!db_product) return new Error("Woops couldn't find the product");
             
-            Comments.find({productId: req.params.productId})
-            .sort({posted_at: -1})
-            .limit(15)
-            .exec(function(err, allcomments){ 
-                if (req.session.passport) 
-                {    
-                    res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments});
-                }
-                else 
-                {
-                    res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments});
-                }
+            var sumprice = db_product.price_array.reduce(function (a,b) {
+                return parseInt(a) + parseInt(b);
+            }, 0);
+
+                Comments.find({productId: req.params.productId})
+                .sort({posted_at: -1})
+                .limit(15)
+                .exec(function(err, allcomments){ 
+                        if (req.session.passport) 
+                    {    
+                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments, sum: sumprice});
+                    }
+                    else 
+                    {
+                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments, sum: sumprice});
+                    }
             })
         })
     })
@@ -189,7 +193,7 @@ module.exports = function(app) {
                 db_project.price_array.push(req.body.price);
                 db_project.save(function(err, result){
                     console.log(db_project)
-                    return res.send('done')
+                    return res.redirect('/product/' + req.params.productId)
                 });
                 
             });

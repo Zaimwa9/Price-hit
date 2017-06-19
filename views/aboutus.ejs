@@ -1,36 +1,100 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-		<title></title>
-	</head>
-	<body>
-		<div id="header">
-			<p id="name">Your Name Here</p>
-			<a href="mailto:you@yourdomain.com"><p id="email">you@yourdomain.com</p></a>
-		</div>
-		<div class="left"></div>
-		<div class="right">
-			<h4>Objective</h4>
-			<p>To take a position as a software engineer.</p>
-			<h4>Experience</h4>
-			<p>Junior Developer, Software Company (2010 - Present)</p>
-			<ul>
-				<li>Designed and implemented end-user features for Flagship Product</li>
-				<li>Wrote third-party JavaScript and Ruby libraries</li>
-			</ul>
-			<h4>Skills</h4>
-			<p>Languages: C#, JavaScript, Python, Ruby</p>
-			<p>Frameworks: .NET, Node.js, Django, Ruby on Rails</p>
-			<h4>Education</h4>
-			<p>BS, Economics, My University</p>
-			<ul>
-				<li>Award for best senior thesis</li>
-				<li>GPA: 3.8</li>
-			</ul>
-		</div>
-		<div id="footer">
-			<p>123 Your Street, Anytown, State 12345-6789 | Tel: (555) 555-5555</p>
-		</div>
-	</body>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Price-Hit</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://localhost:3000/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://localhost:3000/css/shop-item.css" rel="stylesheet">
+
+    <!-- Temporary navbar container fix -->
+    <style>
+    .navbar-toggler {
+        z-index: 1;
+    }
+    
+    @media (max-width: 576px) {
+        nav > .container {
+            width: 100%;
+        }
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            <a class="navbar-brand" href="/">Price-Hit !</a>
+            <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Price World <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutus">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contactus">Contact Us</a>
+                    </li>
+                    <% if (!auth) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/facebook">Login</a>
+                    </li>
+                    <% } %>     
+                    <% if (auth) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } %> 
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+<p> Parce que Le Juste Prix n'est pas l'apanage de Vincent Lagaf’, l’équipe de PriceHit donne la possibilité à chacun d’exprimer lui aussi, son idée du juste prix. Qu’il s’agisse d’une machine à laver, d’un Magritte ou d’un pneu percé en passant par la nouvelle basket issue de l’impression 3D, amusez-vous à pricer, sans vous engager, tous les objets les plus insolites !  
+
+Toutes les semaines, c’est dans l’atmosphère étouffante de la H107A que cette équipe de 5 étudiants de l’ESSEC, motivés et opiniâtres, a travaillé sans relâche pour faire naître ce nouveau rendez-vous des price-makers. Peut-être deviendront-ils les nouveaux acteurs incontournables du marché… 
+
+Et vous, vous seriez prêt à mettre combien pour un cours de création de sites web ? Rdv sur PriceHit !
+</p>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-inverse">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/tether/tether.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
 </html>
+

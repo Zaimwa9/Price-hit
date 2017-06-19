@@ -16,6 +16,8 @@
     <!-- Custom styles for this template -->
     <link href="http://localhost:3000/css/shop-item.css" rel="stylesheet">
 
+    <link href="http://localhost:3000/vendor/bootstrap/css/contactpage.css" rel="stylesheet">
+
     <!-- Temporary navbar container fix -->
     <style>
     .navbar-toggler {
@@ -84,9 +86,11 @@
             <div class="col-lg-9">
 
                 <div class="card mt-4">
-                    <img class="card-img-top img-fluid img-responsive mx-auto" src="<%= product.img %>" alt="" >
                     <div class="card-block">
                         <h2 class="card-title text-center"><%= product.name %></h3>
+                    </div>
+                    <img class="card-img-top img-fluid img-responsive mx-auto" src="<%= product.img %>" alt="" >
+                    <div class="card-block">
                         <% if (auth) {%>
                         <form action="/add_price/<%= product._id %>" method="post">
                         Add a price <input type="number" name="price"><br>
@@ -95,9 +99,9 @@
                         <% } %>
                         <br>
                         <h4 class="pull-right">Product Description:</h4> <%= product.description %> </p>
-                        <br>
-                        <h4 class="pull-right">Average Price: </h4> <%= product.price_array %>
-                        <br>
+                        
+                        <h4 class="pull-right">Average Price: </h4> <%= sum/product.price_array.length %>
+                        <br> <br>
                         <h4 class="pull-right">People who voted : </h4> <%= product.price_array.length %>
                     </div>
                 </div>
@@ -107,21 +111,21 @@
                     <div class="card-header">
                     </div>
                     <div class="card-block">
-                        <% for(i=0; i< comments.length; i++) {%>
-                        <p> <%= comments[i].text %></p>
-                        <small class="text-muted">Posted by <%= comments[i].author_name%> on <%= comments[i].posted_at %></small>
-                        <hr>
-                        <% } %>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non!</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non!</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
+                        <% if (comments.length !== 0) { %>
+                            <% for(i=0; i< comments.length; i++) {%>
+                            <p> <%= comments[i].text %></p>
+                            <small class="text-muted">Posted by <%= comments[i].author_name%> on <%= comments[i].posted_at %></small>
+                            <hr>
+                            <% } %>
+                        <% } else { %>
+                            <small class="text-muted text-center"> No comments so far </small>
+                        <% } %> 
+                        <% if (auth) {%> 
                         <form method="post" action="/add_comment/<%= product._id %>">                      
                             <textarea id="commentfield" input type="text" name="new_comment" style="width:648px; height:120px" required></textarea> <br>
-                            <input type="submit" value="Post your com' !">
+                            <button class="form-btn semibold" type="submit" value="submit_com"> Post your com' ! </button>
                         </form>
+                        <% } %>
                     </div>
                 </div>
                 <!-- /.card -->
