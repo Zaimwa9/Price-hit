@@ -72,7 +72,7 @@
           <% for(i=0; i < count; i++) { %>
         <div class="col-md-3 col-sm-3"> 
             <div class="pagination">
-              <a class="nav-link" href='/product/<%= products[i]._id %>'><img class="img-thumbnail" src='<%= products[i].img %>' style="max-width: 260px; max-height: 260px"> </a> 
+              <a class="nav-link" href='/product/<%= products[i]._id %>'><img class="img-thumbnail" src='<%= products[i].img %>' style="max-width: 260px; max-height: 260px"> <%= products[i].name %> </a> 
             </div>
         </div>
         <% } %> 

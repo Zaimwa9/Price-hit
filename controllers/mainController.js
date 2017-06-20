@@ -174,7 +174,7 @@ module.exports = function(app) {
         var target_path = __dirname + '/../assets/uploads/' + req.file.originalname
         var db_image = '/uploads/' + req.file.originalname;
         // We call the method attached to the model and coded there
-        Products.addProduct(req.body, db_image, function(err, cb){
+        Products.addProduct(req.session.passport.user,req.body, db_image, function(err, cb){
             // We create a pipe (that will copy from req.file.path to target_path)
             var src = fs.createReadStream(req.file.path);
             var dest = fs.createWriteStream(target_path);
@@ -206,6 +206,8 @@ module.exports = function(app) {
             });
     });
 
+// Post method to add a comment on a given product
+
     app.post('/add_comment/:productId', function(req, res) {
         var com = new Comments({
             author_id: req.session.passport.user._id,
@@ -220,6 +222,9 @@ module.exports = function(app) {
             return res.redirect('/product/' + req.params.productId)
         })
     })
+
+
+// Post method to send the contact email to the "Customer service"
 
     app.post('/contactform', function(req, res){
         console.log(req.body);
@@ -238,5 +243,16 @@ module.exports = function(app) {
         })
     });
 
+// Post method to remove a product when you are the owner
+
+    app.post('/removeproduct/:productId', function(req, res) {
+        Products.findOneAndRemove({_id: req.params.productId}, function(err, db_project){
+            if (err) return err;
+            if (!db_project) return  new Error("Weird, couldn't find the product");
+        
+            console.log(db_project + ' succesfully removed');
+            res.redirect('/')
+        })
+    })
 
 } // end of the module.exports

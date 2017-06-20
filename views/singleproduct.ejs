@@ -121,15 +121,21 @@
                             <small class="text-muted">Posted by <%= comments[i].author_name%> on <%= moment(comments[i].posted_at).format('DD/MM/YY h:mm:ss') %></small>
                             <hr>
                             <% } %>
-                        <% } else { %>
-                            <small class="text-muted text-center"> No comments so far </small>
-                        <% } %> 
-                        <% if (auth) {%> 
-                        <form method="post" action="/add_comment/<%= product._id %>">                      
-                            <textarea id="commentfield" input type="text" name="new_comment" style="width:648px; height:120px" required></textarea> <br>
-                            <button class="form-btn semibold" type="submit" value="submit_com"> Post your com' ! </button>
-                        </form>
-                        <% } %>
+                            <% } else { %>
+                                <small class="text-muted text-center"> No comments so far </small>
+                            <% } %> 
+                            <% if (auth) {%> 
+                            <form method="post" action="/add_comment/<%= product._id %>">                      
+                                <textarea id="commentfield" input type="text" name="new_comment" style="width:648px; height:120px" required></textarea> <br>
+                                <button class="form-btn semibold" type="submit" value="submit_com"> Post your com' ! </button>
+                            </form>
+                            <% } %>
+                            
+                            <% if (user.username == product.author) { %>
+                            <form method="post" action="/removeproduct/<%=product._id%>">
+                                <button class="form-btn-remove"> Delete product</button>
+                            </form> 
+                            <% } %>
                     </div>
                 </div>
                 <!-- /.card -->

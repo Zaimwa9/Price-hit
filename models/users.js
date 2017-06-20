@@ -21,7 +21,7 @@ UserSchema.statics.findOrCreatefb = function(profile, cb){
 
         if (user) {console.log('user found'); return cb(null,user)};
 
-        user= new Users ({
+        user = new Users ({
             username: profile.displayName,
             facebookId: profile.id,
             picture: profile.photos[0].value,
