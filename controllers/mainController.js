@@ -140,14 +140,15 @@ module.exports = function(app) {
                 Comments.find({productId: req.params.productId})
                 .sort({posted_at: -1})
                 .limit(15)
-                .exec(function(err, allcomments){ 
-                        if (req.session.passport) 
+                .exec(function(err, allcomments){  
+                        if (req.session.passport.user) 
                     {    
                         res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments, sum: sumprice, moment: moment});
                     }
                     else 
-                    {
-                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments, sum: sumprice, moment: moment});
+                    {   
+                        var visitor = new Users ({username: "test", _id:"111"})
+                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments, sum: sumprice, moment: moment, user: visitor});
                     }
             })
         })
@@ -239,7 +240,7 @@ module.exports = function(app) {
         mailgun.messages().send(data, function(err, body){
             if (err) return (err);
             console.log('Mail sent was: ' + JSON.stringify(body))
-            return res.redirect('contact_thanks.ejs', {auth: req.isAuthenticated})
+            return res.render('contact_thanks.ejs', {auth: req.isAuthenticated})
         })
     });
 
