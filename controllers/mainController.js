@@ -21,6 +21,13 @@ var config = require('../config/config.json');
 var passport = require('passport');
 const session = require('express-session');
 
+// Sending emails
+var configMg = require('../config/mailgun.json');
+var mailgun = require('mailgun-js') ({apiKey: configMg.active_key, domain: 'humantour.ist'});
+
+// Time format
+var moment = require('moment');
+
 var upload = multer({
         dest: __dirname + '/../assets/uploads/' 
     }); 
@@ -108,7 +115,7 @@ module.exports = function(app) {
     app.get('/browsepage', function(req, res){
         Products.find({})
         .sort({posted_at: -1})
-        .limit(10)
+        .limit(50)
         .exec(function(err, db_products){
             if (err) return err;
             console.log(db_products.length);
@@ -136,11 +143,11 @@ module.exports = function(app) {
                 .exec(function(err, allcomments){ 
                         if (req.session.passport) 
                     {    
-                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments, sum: sumprice});
+                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments, sum: sumprice, moment: moment});
                     }
                     else 
                     {
-                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments, sum: sumprice});
+                        res.render('singleproduct.ejs', {auth: req.isAuthenticated(), product: db_product, comments: allcomments, sum: sumprice, moment: moment});
                     }
             })
         })
@@ -213,6 +220,23 @@ module.exports = function(app) {
             return res.redirect('/product/' + req.params.productId)
         })
     })
+
+    app.post('/contactform', function(req, res){
+        console.log(req.body);
+        console.log('Email about to be sent');
+        var data= {
+            from: 'Price-Hit <b00549848@essec.edu>',
+            to: 'b00549848@essec.edu',
+            subject: 'New contact from: ' + req.body.mail,
+            text: 'Name: ' + req.body.name + '\r\n message: ' + req.body.message
+        }
+        
+        mailgun.messages().send(data, function(err, body){
+            if (err) return (err);
+            console.log('Mail sent was: ' + JSON.stringify(body))
+            return res.redirect('contact_thanks.ejs', {auth: req.isAuthenticated})
+        })
+    });
 
 
 } // end of the module.exports

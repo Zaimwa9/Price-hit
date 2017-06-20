@@ -16,6 +16,8 @@
     <!-- Custom styles for this template -->
     <link href="css/shop-item.css" rel="stylesheet">
 
+    <link href="vendor/bootstrap/css/contactpage.css" rel="stylesheet">
+
     <!-- Temporary navbar container fix -->
     <style>
     .navbar-toggler {
@@ -71,8 +73,7 @@
         <div class="row">
 
             <div class="col-lg-3">
-                <h1 class="my-4">Price me Name!</h1>
-                <div class="list-group">
+                <div class="list-group"> <br>
                     <a href="/browsepage" class="list-group-item">Browse Products</a>
                     <a href="/addproduct" class="list-group-item active">Add Product</a>
                 </div>
@@ -84,14 +85,16 @@
 
                 <div class="card mt-4">
                     <div class="card-block">
-                        <h3 class="card-title">Product Name</h3>
                         <form method="post" action="/input_new_product" enctype="multipart/form-data">
-                        Name your Product: <br> <input type="text" name="name" style="width:300px"><br>
-                        Can you describe it ? <br> <textarea input type="text" name="description" style="width:300px; height:180px"></textarea><br> 
-                        Category: <br> <input type="text" name="category"style="width:300px"><br>
-                        Select your Price:<br> <input type="number" name="price"style="width:300px"><br>
-                        Add a Picture: <br><input type="file" name="image"><br>
-                        <input type="submit" value="submit">
+                        <!-- with JM Css -->
+                        <input type="text" name="name" id="name" required="required" class="form" placeholder="Name your product" />
+                        
+                        <input type="text" name="category" id="category" required="required" class="form" placeholder="Category" />
+                        <input type="number" name="price" id="price" required="required" class="form" placeholder="Select your price" />
+                        <textarea name="description" id="description" class="form textarea"  placeholder="Description"></textarea>
+                        
+                        Add a Picture: <br><input type="file" class="form" name="image"><br>
+                        <input type="submit" value="Submit" class="form-btn semibold">
                         </form>
                     </div>
                 </div>

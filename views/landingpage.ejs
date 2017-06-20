@@ -74,9 +74,11 @@
 
             <div class="col-lg-3">
                 <h2 class="my-4">Hello <%= user.username %> !</h2>
-                <div class="list-group">
+                <div class="list-group"> <br>
                     <a href="/browsepage" class="list-group-item">Browse Products</a>
+                    <% if (auth) {%>
                     <a href="/addproduct" class="list-group-item">Add Product</a>
+                    <% } %>
                 </div>
             </div>
 

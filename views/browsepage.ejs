@@ -8,13 +8,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Price-Hit</title>
+    <title>Price'Hit - New product</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://localhost:3000/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://localhost:3000/css/shop-item.css" rel="stylesheet">
+    <link href="css/shop-item.css" rel="stylesheet">
 
     <!-- Temporary navbar container fix -->
     <style>
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarExample">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Price World <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Price World <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/aboutus">About Us</a>
@@ -66,9 +66,11 @@
         </div>
     </nav>
 
+    <div class="container">
+
     <div class="row">
           <% for(i=0; i < count; i++) { %>
-        <div class="col-md-3 col-sm-6"> 
+        <div class="col-md-3 col-sm-3"> 
             <div class="pagination">
               <a class="nav-link" href='/product/<%= products[i]._id %>'><img class="img-thumbnail" src='<%= products[i].img %>' style="max-width: 260px; max-height: 260px"> </a> 
             </div>
