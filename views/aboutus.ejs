@@ -11,10 +11,12 @@
     <title>Price-Hit</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://localhost:3000/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://localhost:3000/css/shop-item.css" rel="stylesheet">
+    <link href="/css/shop-item.css" rel="stylesheet">
+
+    <link href="/vendor/bootstrap/css/contactpage.css" rel="stylesheet">
 
     <!-- Temporary navbar container fix -->
     <style>
@@ -77,31 +79,39 @@
                     <% if (auth) {%>
                     <a href="/addproduct" class="list-group-item">Add Product</a>
                     <% } %>
+                    </br>
                 </div>
             </div>
-      
+
+            <!-- /.col-lg-3 -->
+
             <div class="col-lg-9">
+
                 <div class="card mt-4">
                     <div class="card-block">
-                    <h3 class="text-center"> Qui sommes-nous ? </h3> <br>
-                    <p> Parce que Le Juste Prix n'est pas l'apanage de Vincent Lagaf’, l’équipe de PriceHit donne la possibilité à chacun d’exprimer lui aussi, son idée du juste prix. </p>
+                    <h3 class="text-center"> Who are we? </h3> <br>
+
+                    <p> Once a week, in the warming and suffocating atmosphere of the H107A classroom, a  team of 5 students from ESSEC, motivated and stubborn, worked tirelessly to create THE meeting ground for price-makers…</p> 
                     
-                    <p> Qu’il s’agisse d’une machine à laver, d’un Magritte ou d’un pneu percé en passant par la nouvelle basket issue de l’impression 3D, amusez-vous à pricer, sans vous engager, tous les objets les plus insolites !  
+                    <br>
 
-                    <p> Toutes les semaines, c’est dans l’atmosphère étouffante de la H107A que cette équipe de 5 étudiants de l’ESSEC, motivés et opiniâtres, a travaillé sans relâche pour faire naître ce nouveau rendez-vous des price-makers. Peut-être deviendront-ils les nouveaux acteurs incontournables du marché…  </p>
+                    <p class="text-center"> And you, how much would you price a website creation class? Tell us on PriceHit! </p>
 
-                    <p> Et vous, vous seriez prêt à mettre combien pour un cours de création de sites web ? Rdv sur PriceHit !
-                    </p>
+                    
+                    </div>
                 </div>
+                <!-- /.card -->
+                <br>
             </div>
+            <!-- /.col-lg-9 -->
+
+        </div>
+
     </div>
-</div>
-    </div>
-    <br>
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-inverse">
+    <footer class="py-3 bg-inverse">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; PriceHit 2017</p>
         </div>

@@ -74,7 +74,7 @@
 
             <div class="col-lg-3">
                 <h2 class="my-4">Hello <%= user.username %> !</h2>
-                <div class="list-group"> <br>
+                <div class="list-group">
                     <a href="/browsepage" class="list-group-item">Browse Products</a>
                     <% if (auth) {%>
                     <a href="/addproduct" class="list-group-item">Add Product</a>
@@ -83,6 +83,23 @@
                 </div>
             </div>
 
+            <div class="col-lg-9">
+                <br>
+            <img class="img" src="/img/logo.png"  style="margin-left:225px; width: 360px; height: 130px">
+
+                <div class="card mt-4">
+                    <div class="card-block">
+            
+                            <p style="text-indent:40px"> Because <i> The price is right </i> does not solely belong to Vincent Lagaf’, <b>PriceHit</b> gives everyone the possibility to guess and express his own idea of the right price. </p>
+                            <p> May it be a washing machine, a flat tire, a Magritte’s painting through to the latest 3D-printed basketball shoes, have fun pricing the weirdest stuff without any commitment!</p>            
+                            <p class="text-center"> So what are you waiting for? </p> 
+                            <p class="text-center">Signup and start browsing our very own Pandora's box! </p>
+                            
+                    </div>
+                </div>
+                <!-- /.card -->
+                <br>
+            </div>
             <!-- /.col-lg-9 -->
 
         </div>
@@ -91,7 +108,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-inverse">
+    <footer class="py-3 bg-inverse">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; PriceHit 2017</p>
         </div>

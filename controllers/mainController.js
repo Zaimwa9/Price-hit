@@ -141,7 +141,7 @@ module.exports = function(app) {
                 .sort({posted_at: -1})
                 .limit(15)
                 .exec(function(err, allcomments){  
-                        if (req.session.passport.user) 
+                        if (req.isAuthenticated()) 
                     {    
                         res.render('singleproduct.ejs', {auth: req.isAuthenticated(), user: req.session.passport.user, product: db_product, comments: allcomments, sum: sumprice, moment: moment});
                     }

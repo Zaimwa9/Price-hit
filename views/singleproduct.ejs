@@ -76,7 +76,9 @@
             <div class="col-lg-3">
                 <div class="list-group"> <br>
                     <a href="/browsepage" class="list-group-item">Browse Products</a>
+                    <% if (auth) {%>
                     <a href="/addproduct" class="list-group-item">Add Product</a>
+                    <% } %>
                 </div>
             </div>
 
@@ -149,7 +151,7 @@
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-inverse">
+    <footer class="py-3 bg-inverse">
         <div class="container">
             <p class="m-0 text-center text-white">Copyright &copy; PriceHit 2017</p>
         </div>
