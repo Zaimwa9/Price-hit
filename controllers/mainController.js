@@ -37,21 +37,21 @@ var type = upload.single('image');
 passport.use(new FacebookStrategy({
     clientID: config.facebook_id,
     clientSecret: config.facebook_secret,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: "http://localhost:3033/auth/facebook/callback",
     profileFields: ['id', 'displayName', 'name', 'gender', 'picture.type(large)']
     },
-  function(accessToken, refreshToken, profile, cb) {
-    Users.findOrCreatefb(profile, function (err, user) {
-      return cb(err, user);
-    });
-  }    
+    function(accessToken, refreshToken, profile, cb) {
+        Users.findOrCreatefb(profile, function (err, user) {
+            return cb(err, user);
+        });
+    }    
 ));
 
 function ensureAuthenticated(req, res, next) {
-        console.log(req.session);
-        if (req.isAuthenticated()) { console.log('authenticated'); return next(); }
-        console.log('denied');
-        res.redirect('/');
+    console.log(req.session);
+    if (req.isAuthenticated()) { console.log('authenticated'); return next(); }
+    console.log('denied');
+    res.redirect('/');
 }
 
 module.exports = function(app) {

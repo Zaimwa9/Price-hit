@@ -8,9 +8,19 @@ var mainController = require('./controllers/mainController.js')
 var bodyParser = require('body-parser');
 var passport = require('passport');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
+// connecting to mongodb (mlab cloud service)
+var db = mongoose.connect(mgconfig.getDbConnectionstring(), function() {
+    console.log('successfully connected')
+});
+/*
+mongoose.connect(mgconfig.getDbConnectionstring(), function() {
+    console.log('successfuly connected')
+});
+*/
 passport.serializeUser(function(user, cb) {
   Users.findOne({facebookId: user.facebookId}, function(err, db_user){
     if (err) return err;
@@ -21,23 +31,24 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(obj, cb) {
-  cb(null, obj);
+    cb(null, obj);
 });
 
 app.use(session({
         key: 'session',
         secret: 'helloworld123',
-        store: require('mongoose-session')(mongoose)
+        resave: true,
+        saveUninitialized: true,
+        store: new MongoStore({
+          mongooseConnection: db.connection
+      })
 }));
 
 app.use(passport.initialize());
 
 app.use(passport.session());
 
-// connecting to mongodb (mlab cloud service)
-mongoose.connect(mgconfig.getDbConnectionstring(), function() {
-    console.log('successfuly connected')
-});
+
 
 // We declare the view engine, using ejs. This means that each time we want to render an ejs page it will look into the views folder
 app.set('view engine', 'ejs');
@@ -53,5 +64,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // cf MainController description, we pass our app with all the requests received to the controller which will handle the requests
 mainController(app);
 
-app.listen(3000);
+app.listen(3033);
 //C:\Users\Wadii\Desktop\Price-hit\img\Banana3.jpg
